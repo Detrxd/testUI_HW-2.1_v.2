@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/pep5rme82me66mbg?svg=true)](https://ci.appveyor.com/project/Detrxd/testui-hw-2-1)
