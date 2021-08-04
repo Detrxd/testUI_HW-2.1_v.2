@@ -4,6 +4,7 @@ HELP.md
 .gradle
 build/
 target/
+driver/
 
 ### STS ###
 .apt_generated
