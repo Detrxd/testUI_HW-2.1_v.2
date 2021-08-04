@@ -48,7 +48,7 @@ public class AppOrderTest {
         elements.get(1).sendKeys("+79163273699");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button__content")).click();
-        String text = driver.findElement(By.className("Success_successBlock__2L3Cw")).getText();
+        String text = driver.findElement(By.cssSelector("[data-test-id=\"order-success\"]")).getText();
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
     }
 
@@ -59,7 +59,7 @@ public class AppOrderTest {
         fields.get(1).sendKeys("89163273699");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button__content")).click();
-        String actual = driver.findElement(By.className("input__sub")).getText();
+        String actual = driver.findElement(By.cssSelector("[data-test-id=\"name\"].input_invalid .input__sub")).getText();
         assertEquals("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.", actual.trim());
     }
 
@@ -75,13 +75,23 @@ public class AppOrderTest {
     }
 
     @Test
-    void emptyFieldsValue() {
+    void emptyNameField() {
         List<WebElement> fields = driver.findElements(By.className("input__control"));
         fields.get(0).sendKeys("");
-        fields.get(1).sendKeys("");
+        fields.get(1).sendKeys("+79163273699");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button__content")).click();
         String actual = driver.findElement(By.cssSelector("[data-test-id=\"name\"].input_invalid .input__sub")).getText();
+        assertEquals("Поле обязательно для заполнения", actual.trim());
+    }
+    @Test
+    void emptyPhoneField() {
+        List<WebElement> fields = driver.findElements(By.className("input__control"));
+        fields.get(0).sendKeys("Филимонов Илья");
+        fields.get(1).sendKeys("");
+        driver.findElement(By.className("checkbox__box")).click();
+        driver.findElement(By.className("button__content")).click();
+        String actual = driver.findElement(By.cssSelector("[data-test-id=\"phone\"].input_invalid .input__sub")).getText();
         assertEquals("Поле обязательно для заполнения", actual.trim());
     }
 
@@ -136,7 +146,7 @@ public class AppOrderTest {
         fields.get(1).sendKeys("+79163273699");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button__content")).click();
-        String actual = driver.findElement(By.className("Success_successBlock__2L3Cw")).getText();
+        String actual = driver.findElement(By.cssSelector("[data-test-id=\"order-success\"]")).getText();;
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actual.trim());
 
     }
